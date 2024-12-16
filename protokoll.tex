@@ -115,6 +115,34 @@ Nicht gelöst.
 \section{Zertifiziertes Durcheinander}
 
 \subsection{Zertifizieren ist schwer}
+Um den Certificate Signing Request zu erstellen habe ich den folgenden Befehl verwendet:
+\lstinline{openssl req -newkey rsa:4096 -sha512 -config openssl.cnf -out csr.csr -subj "/CN=12123657-Intermediate-CA-WS2024/OU=ESSE-Lab1-Exercise"} \\
+\lstinline{req} ist der Befehl um einen CSR zu erstellen; \\
+\lstinline{-newkey rsa:4096} spezifiziert, dass ein neuer Key (4096-Bit RSA) erstellt werden soll; \\
+\lstinline{-sha512} gibt an, dass sha512WithRSAEncription als Signaturalgorithmus verwendet werden soll; \\
+mit \lstinline{-config} wird angegeben, welches config file zu verwenden ist; \\
+\lstinline{-out} bestimmt das output-file und \\
+\lstinline{-subj "/CN=12123657-Intermediate-CA-WS2024/OU=ESSE-Lab1-Exercise"} definiert die gewünschten Namens-Parameter im CSR.
+
+Das config file dient dazu, die nötigen X509v3 Parameter zu setzen und sieht aus wie folgt:
+
+\begin{lstlisting}[caption=openssl.cnf,label=code:opensslConfig,style=simple]
+  [ req ]
+  default_bits           = 4096
+  default_md             = sha512
+  default_keyfile        = privkey.pem
+  distinguished_name     = req_distinguished_name
+  req_extensions          = v3_req
+
+  [ req_distinguished_name ]
+
+  [ v3_req ]
+  subjectKeyIdentifier = hash
+  basicConstraints = critical, CA:true, pathlen:0
+  keyUsage = critical, Certificate Sign, CRL Sign
+\end{lstlisting}
+
+Nach Ausführung des oben genannten Befehls, wird der CSR in der Datei csr.csr gespeichert, diese wurde im Abgabetool eingereicht.
 
 
 \section{Zeitreise durch das World Wide Web}
