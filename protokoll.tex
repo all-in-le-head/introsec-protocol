@@ -1,0 +1,171 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Institut für Information Systems Engineering
+% Forschungsgruppe INSO
+% Arbeitsgruppe ESSE
+% https://establishing-security.at/
+% lva.security@inso-world.com
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[12pt,a4paper,titlepage,oneside]{scrartcl}
+\newcommand{\lang}{de}
+\usepackage{esseProtocol}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% FOR STUDENTS
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Team number or "0" for Lab0
+%TODO team number
+\newcommand{\team}{44}
+% Date
+%TODO fill in creation date
+\newcommand{\datum}{\today}
+%TODO lab number
+% valid values: "Lab0", "Lab1" (be sure to use Uppercase for first character)
+\newcommand{\lab}{Lab1}
+
+%TODO name of course
+\newcommand{\lvaname}{Einführung in Security} % if 6 ECTS variant, otherwise: Introduction to Security
+%TODO number of course
+\newcommand{\lvanr}{194.157} % if 6 ECTS variant, otherwise: 183.594
+%TODO year and term, for example: "2024 S" or "2024 W", etc.
+\newcommand{\semester}{2024 W}
+
+% Student data in Lab0 or 1. student of team in Lab1
+\newcommand{\studentAName}{Kevin Csele}
+\renewcommand{\studentAMatrnr}{12122544}
+
+% 2. student of team in Lab1, for Lab0 or if your team has less students, remove these 2 lines
+\newcommand{\studentBName}{Clemens Schneider}
+\renewcommand{\studentBMatrnr}{MATRIKELNUMMER}
+
+% 3. student of team in Lab1, for Lab0 or if your team has less students, remove these 2 lines
+\newcommand{\studentCName}{Luka Twaroch}
+\renewcommand{\studentCMatrnr}{MATRIKELNUMMER}
+
+% 4. student of team in Lab1, for Lab0 or if your team has less students, remove these 2 lines
+\newcommand{\studentDName}{Wen Long Zhou}
+\renewcommand{\studentDMatrnr}{MATRIKELNUMMER}
+
+% 5. student of team in Lab1, for Lab0 or if your team has less students, remove these 2 lines
+\newcommand{\studentEName}{Ramin}
+\renewcommand{\studentEMatrnr}{MATRIKELNUMMER}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% DO NOT CHANGE THE FOLLOWING PART
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\colormode}{color}
+\newcommand{\dokumenttyp}{Abgabedokument \lab}
+
+\begin{document}
+
+\maketitle
+\setcounter{section}{0}
+\setcounter{tocdepth}{2}
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% CONTENT OF DOCUMENT STARTS HERE
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section*{HINWEIS}
+
+Bitte halten Sie sich genau an die Struktur im jCTF. Bitte beginnen Sie mit der ersten Kategorie, d.h., ``Der Service war auch schon besser ...'' und den entsprechenden Unteraufgaben. Bitte gehen Sie immer von links nach rechts und von oben nach unten vor. Eine Kategorie ist eine section, eine Challenge eine subsection. Bitte erstellen Sie auch Einträge für Beispiele, die Sie nicht gelöst haben. (Diesen HINWEIS gerne löschen!)
+
+\section{Der Service war auch schon besser ...}
+
+\subsection{Achtung! Streng geheim!}
+Nicht gelöst.
+
+\subsection{Eine schräge Nummer}
+Nicht gelöst.
+
+usw.
+
+[...]
+
+\section{Ueberschrift 1}
+
+\subsection{Hinweise}
+\emph{Hinweise:}
+\begin{itemize}
+    \item Verwenden Sie entweder diese deutsche Version oder die englische Version in \lstinline{protocol.tex}.
+    \item Setzen Sie alle Variablen nach \emph{FOR STUDENTS} in der .tex Datei.
+    \item Ersetzen Sie die Platzhalter für Ihre Namen und MatNr.
+    \item Löschen Sie diese Sektion über Hinweise und die folgenden Beispiel-Kapitel.
+    \item Achten Sie auf geforderte Formate und Anforderungen an die Dateinamen.
+    \item Führen Sie \lstinline{pdflatex} mindestens zweimal aus, damit die Referenzen und Seitenzahlen richtig im PDF dargestellt werden.
+    \item Sie können dazu auch das Makefile verwenden: \lstinline{make de}.
+\end{itemize}
+
+\subsection{Sub-Ueberschrift 1}
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+\subsection{Sub-Ueberschrift 2}
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+
+\section{Ueberschrift 2}
+
+\subsection{Sub-Ueberschrift 1}
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+
+\subsection{Sub-Ueberschrift 2}
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+
+\subsection{Sub-Ueberschrift 3}
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+
+\section{Beispiele}
+
+\subsection{Source Code formatieren}
+Es folgen einige Beispiele wie Sourcecode in diesem Dokument formatiert und referenziert werden kann
+(\hyperref[code:beispiel1]{siehe Listing~\ref*{code:beispiel1} auf Seite~\pageref*{code:beispiel1}} und \hyperref[code:beispiel2]{siehe Listing~\ref*{code:beispiel2} auf Seite~\pageref*{code:beispiel2}}).
+
+Ebenso können kurzer Code oder kurze Befehle direkt in der Zeile in einem \lstinline{lstinline Block} mit typengleicher Schrift formatiert werden.
+
+\lstinputlisting[caption=Example C/C++ file,label=code:beispiel1,style=c]{example.c}
+
+\begin{lstlisting}[caption=Example bash script,label=code:beispiel2,style=simple]
+#!/bin/bash
+echo "Bash version ${BASH_VERSION}..."
+for i in {0..10..2}
+  do
+     echo "Welcome $i times"
+ done
+
+echo "some very very very very very very very very very very very very very very very very very very very very long string"
+
+exit 0;
+\end{lstlisting}
+
+\subsection{Bilder}
+
+Es folgen einige Beispiele wie Bilder in diesem Dokument eingefuegt werden koennen
+(\hyperref[fig:logo1]{siehe Abbildung~\ref*{fig:logo1} auf Seite~\pageref*{fig:logo1}}).
+
+\begin{figure}[h!]
+  \centering
+  \fbox{
+    \includegraphics[width=0.4\textwidth]{./imgs/logos/esse-logo-color.png}
+  }
+  \caption{ESSE Logo}
+  \label{fig:logo1}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% DO NOT CHANGE THE FOLLOWING PART
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
