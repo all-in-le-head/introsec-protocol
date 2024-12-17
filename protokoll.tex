@@ -76,24 +76,50 @@
 % CONTENT OF DOCUMENT STARTS HERE
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\section*{HINWEIS}
-
-Bitte halten Sie sich genau an die Struktur im jCTF. Bitte beginnen Sie mit der ersten Kategorie, d.h., ``Der Service war auch schon besser ...'' und den entsprechenden Unteraufgaben. Bitte gehen Sie immer von links nach rechts und von oben nach unten vor. Eine Kategorie ist eine section, eine Challenge eine subsection. Bitte erstellen Sie auch Einträge für Beispiele, die Sie nicht gelöst haben. (Diesen HINWEIS gerne löschen!)
-
+\newpage
 
 \section{Der Service war auch schon besser ...}
 
 \subsection{Achtung! Streng geheim!}
-Nicht gelöst.
+Um diese Aufgabe zu l\"osen, hat es gen\"ugt, das besagte PDF im Browser zu \"offnen. Der ``streng geheime`` String befand sich im Titel des Tabs.
 
 \subsection{Eine schräge Nummer}
-Nicht gelöst.
+Die Rechnungsnummer wurde zwar von einem schwarzen Rechteck verdeckt, ließ sich jedoch ganz einfach kopieren, indem man die betroffene Stelle markiert -> Strg + C
 
 \subsection{Was letzte Preis?}
-Nicht gelöst.
+Selbes Spiel, auch der Preis ließ sich ganz simpel herauskopieren.
 
 \subsection{IBANs sollte man verbannen!}
+Um den IBAN aufzudecken, habe ich PDF-XChange verwendet, um das schwarze Rechteck mit dem Objektbearbeitungswerkzeug zu entfernen.
+
+
+\section{Wireless Time Travel}
+
+\subsection{Vier zukunftssichere Handschl\"age}
+Nicht gelöst.
+
+\subsection{Code der Zukunft}
+Nicht gelöst.
+
+\subsection{Ungew\"ohnlich verschl\"usselte Botschaft}
+Nicht gelöst.
+
+\subsection{Geheimnisvoller Zugang: superboss}
+Nicht gelöst.
+
+\subsection{Unbrauchbarer Schl\"ussel}
+Nicht gelöst.
+
+\subsection{Einen Schl\"ussel f\"ur einen Schl\"ussel! Echt jetzt?!}
+Nicht gelöst.
+
+\subsection{Verborgenes Protokoll}
+Nicht gelöst.
+
+
+\section{Bot Bot Bot Bot}
+
+\subsection{I keep you my little secret ...}
 Nicht gelöst.
 
 
@@ -122,10 +148,8 @@ Um den Certificate Signing Request zu erstellen habe ich den folgenden Befehl ve
 \lstinline{-sha512} gibt an, dass sha512WithRSAEncription als Signaturalgorithmus verwendet werden soll; \\
 mit \lstinline{-config} wird angegeben, welches config file zu verwenden ist; \\
 \lstinline{-out} bestimmt das output-file und \\
-\lstinline{-subj "/CN=12123657-Intermediate-CA-WS2024/OU=ESSE-Lab1-Exercise"} definiert die gewünschten Namens-Parameter im CSR.
-
+\lstinline{-subj "/CN=12123657-Intermediate-CA-WS2024/OU=ESSE-Lab1-Exercise"} definiert die gewünschten Namens-Parameter im CSR. \\ \\
 Das config file dient dazu, die nötigen X509v3 Parameter zu setzen und sieht aus wie folgt:
-
 \begin{lstlisting}[caption=openssl.cnf,label=code:opensslConfig,style=simple]
   [ req ]
   default_bits           = 4096
@@ -141,7 +165,6 @@ Das config file dient dazu, die nötigen X509v3 Parameter zu setzen und sieht au
   basicConstraints = critical, CA:true, pathlen:0
   keyUsage = critical, Certificate Sign, CRL Sign
 \end{lstlisting}
-
 Nach Ausführung des oben genannten Befehls, wird der CSR in der Datei csr.csr gespeichert, diese wurde im Abgabetool eingereicht.
 
 
@@ -351,37 +374,6 @@ Nicht gelöst.
 
 \subsection{Stageeeeeeeeeeee}
 Nicht gelöst.
-
-
-\section{Bot Bot Bot Bot}
-
-\subsection{I keep you my little secret ...}
-Nicht gelöst.
-
-
-\section{Wireless Time Travel}
-
-\subsection{Vir zukunftssichere Handschl\"age}
-Nicht gelöst.
-
-\subsection{Code der Zukunft}
-Nicht gelöst.
-
-\subsection{Ungew\"ohnlich verschl\"usselte Botschaft}
-Nicht gelöst.
-
-\subsection{Geheimnisvoller Zugang: superboss}
-Nicht gelöst.
-
-\subsection{Unbrauchbarer Schl\"ussel}
-Nicht gelöst.
-
-\subsection{Einen Schl\"ussel f\"ur einen Schl\"ussel! Echt jetzt?!}
-Nicht gelöst.
-
-\subsection{Verborgenes Protokoll}
-Nicht gelöst.
-
 
 
 \section{Ueberschrift 1}
