@@ -3,3 +3,5 @@
 
 # Allow .pdf files
 !buildfiles/*.pdf
+
+.DS_STORE
