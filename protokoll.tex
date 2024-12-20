@@ -340,19 +340,162 @@ Nicht gelöst.
 \section{Franz Joseph und die Kommandozeile}
 
 \subsection{Stage}
-Nicht gelöst.
+Bei diesem Beispiel musste man sich mit dem Befehl \lstinline{ssh e12122544@tese.esse-teaching.at -p 12345} in tese einloggen und von dort mit dem Befehl \lstinline{ssh eisec_team44@10.10.10.201 -p 22044} zum vorgebenen Host verbinden. Hier gab es eine ''welcome.txt'' Datei welche Beschrieb dass ich mich in den user stage00 einloggen soll und dort die Aufgabe machen soll. Die Aufgabe war es einen username mit verstecktem Passwort zu finden. Für diese Stage haben mich die folgenden Schritte zum Ziel geführt.
+
+Nach dem verbinden zur vorgegebenen Maschine:
+\begin{itemize}
+  \item Ausführen von \lstinline{ls -la}
+  \item Interessanten versteckten Ordner gefunden 
+  \item In den Ordner gewechselt mit \lstinline{cd}
+  \item Erneut \lstinline{ls -la} ausgeführt
+  \item Interessante versteckte Datei gefunden
+  \item Inhalt der Datei ausgegeben
+  \item Fertig
+\end{itemize}
+  
+Lösung: 
+\begin{itemize} 
+  \item Username: stage01
+  \item Passwort: bi0owaiK6ieK
+\end{itemize}
+Das folgende Bild zeigt die ausgeführten Befehle in der Kommandozeile.
+  \begin{figure}[h!]
+    \centering
+    \fbox{
+      \includegraphics[width=0.8\textwidth]{imgs/stage_solution.png}
+    }
+    \caption{Lösungsweg ''Stage''}
+    \label{fig:stage_solution}
+  \end{figure}
+
 
 \subsection{Stagee}
-Nicht gelöst.
+Dieses Beispiel hatte dieselbe Aufgabe wie die vorige, undzwar ein verstecktes Passwort finden. Hier war ich schon auf der richtigen Maschine eingeloggt, ich musste nurmehr user wechseln welchen ich aus der vorigen Ausgabe erhalten habe. Für diese Stagee haben mich die folgenden Schritte zum Ziel geführt:
+
+\begin{itemize}
+  \item Einloggen mit dem gegebenen Benutzer: \lstinline{su -l stage01}
+  \item Ausführen von \lstinline{ls -la}  
+  \item Interessante Datei \lstinline{.dump} gefunden, die in ''Stage'' nicht vorhanden war
+  \item Dateiinhalt mit \lstinline{cat .dump} ausgegeben
+  \item Die Hexadezimaldaten mit einem Hex-Decoder decodiert
+  \item Fertig
+\end{itemize}
+  
+Lösung:
+\begin{itemize}
+  \item Username: stage02 
+  \item Passwort: othie9chai8V
+\end{itemize}
+
+Das folgende Bild zeigt die ausgeführten Befehle in der Kommandozeile.
+  \begin{figure}[h!]
+    \centering
+    \fbox{
+      \includegraphics[width=0.8\textwidth]{imgs/stagee_solution.png}
+    }
+    \caption{Lösungsweg ''Stagee''}
+    \label{fig:stagee_solution}
+  \end{figure}
 
 \subsection{Stageee}
-Nicht gelöst.
+Bei diesem Beispiel war es wieder dasselbe. Für diese Stageee haben mich die folgenden Schritte zum Ziel geführt:
+
+\begin{itemize} 
+  \item Einloggen mit dem gegebenen Benutzer: \lstinline{su -l stage02}
+  \item Ausführen von \lstinline{ls -la}
+  \item Interessante \lstinline{.compressed.gz} Datei gefunden
+  \item Konnte sie nicht mit \lstinline{gunzip} entpacken, daher Inhalt mit \lstinline{zcat} ausgelesen
+  \item Inhalt wird ausgegeben 
+  \item Fertig
+\end{itemize}
+  
+Lösung:
+\begin{itemize}
+  \item Username: stage03
+  \item Passwort: aeteet1iMa2o  
+\end{itemize}
+
+Das folgende Bild zeigt die ausgeführten Befehle in der Kommandozeile.
+  \begin{figure}[h!]
+    \centering
+    \fbox{
+      \includegraphics[width=0.8\textwidth]{imgs/stageee_solution.png}
+    }
+    \caption{Lösungsweg ''Stageee''}
+    \label{fig:stageee_solution}
+  \end{figure}
+
 
 \subsection{Stageeee}
-Nicht gelöst.
+Bei diesem Beispiel war es wieder dasselbe. Für diese Stageee haben mich die folgenden Schritte zum Ziel geführt:
+
+\begin{itemize}
+  \item Einloggen mit dem gegebenen Benutzer: \lstinline{su -l stage03} 
+  \item Ausführen von \lstinline{ls -la}
+  \item Interessante \lstinline{.compressed.unknown.rar} Datei gefunden
+  \item \lstinline{zcat} auf die Datei ausgeführt 
+  \item Inhalt wird ausgegeben
+  \item Fertig  
+\end{itemize}
+  
+Lösung:
+\begin{itemize} 
+  \item Username: stage04
+  \item Passwort: BooR7nie1chu
+\end{itemize}
+
+Das folgende Bild zeigt die ausgeführten Befehle in der Kommandozeile.
+  \begin{figure}[h!]
+    \centering
+    \fbox{
+      \includegraphics[width=0.8\textwidth]{imgs/stageeee_solution.png}
+    }
+    \caption{Lösungsweg ''Stageeee''}
+    \label{fig:stageeee_solution}
+  \end{figure}
+
 
 \subsection{Stageeeee}
-Nicht gelöst.
+Bei diesem Beispiel war es wieder dasselbe. Für diese Stageee haben mich die folgenden Schritte zum Ziel geführt:
+
+\begin{itemize}
+  \item Einloggen mit dem gegebenen Benutzer: \lstinline{su -l stage04}
+  \item Ausführen von \lstinline{ls -la} 
+  \item Interessante \lstinline{.encrypted} Datei gefunden
+  \item \lstinline{cat} auf die Datei ausgeführt, um den Inhalt auszugeben
+  \item Inhalt scheint verschlüsselt zu sein 
+  \item Sieht nach Base64 aus
+  \item In Base64-Decoder eingegeben (Ausgabe siehe \ref{fig:stageeeee_base64_output})
+  \item Zufällige Zeichen deuten darauf hin, dass es komprimiert sein könnte
+  \item Mit Base64-Befehl entschlüsselt, entpackt und direkt auf die Konsolenausgabe ausgegeben, da das Schreiben in Dateien in diesem Verzeichnis nicht erlaubt ist. Folgender Befehl wurde verwendet: \lstinline{base64 -d .encrypted | gunzip} 
+  \item Fertig
+\end{itemize}
+  
+Lösung: 
+\begin{itemize}
+  \item Username: stage05
+  \item Passwort: eifietiey2Go
+\end{itemize}
+
+  \begin{figure}[h!]
+    \centering
+    \fbox{
+      \includegraphics[width=0.8\textwidth]{imgs/stageeeee_base64_output.png}
+    }
+    \caption{Ergebnis der base64 Dekodierung von dem Inhalt der Datei .encrypted}
+    \label{fig:stageeeee_base64_output}
+  \end{figure}
+
+  \begin{figure}[h!]
+    \centering
+    \fbox{
+      \includegraphics[width=0.8\textwidth]{imgs/stageeeee_solution.png}
+    }
+    \caption{Lösungsweg ''Stageeeee''}
+    \label{fig:stageeeee_solution}
+  \end{figure}
+
+\newpage
 
 \subsection{Stageeeeee}
 Nicht gelöst.
