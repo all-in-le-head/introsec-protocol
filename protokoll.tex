@@ -195,7 +195,95 @@ Nicht gelöst.
 \section{Antike Mobile Security}
 
 \subsection{iTimeTravel}
-Nicht gelöst.
+Bei dieser Aufgabe wurden iOS-Anwendungsdaten aus verschiedenen lokalen Speichern analysiert. Die folgenden Speicherorte wurden untersucht:
+
+\begin{itemize}
+\item NSUserDefaults in:
+  \begin{itemize}
+  \item Application/314A301E-B0C5-4698-A396-7CA896D7B486/Documents/userinfo.plist:
+    \begin{itemize}
+    \item Name: Manzana
+    \item Telefonnummer: 004367705619025
+    \item Status: ''Hi, I'm using SupChat!''
+    \end{itemize}
+  \item Application/992CB749-C531-4E83-9F43-9FA66CDFD68D/Library/ Preferences/com.healthapp.health.plist:
+    \begin{itemize}
+    \item Name: Manzana
+    \item SVNR: 1234 010490
+    \item PIN: 6210
+    \end{itemize}
+  \end{itemize}
+  .plist Dateien wurden simpel mit Xcode geöffnet und mit dem eingebauten XML Viewer ausgelesen.
+
+\item CoreData in Application/5FAD1E78-32D1-4C5F-929D-FD098D4AF4D4/Library/Application\ Support/Data.sqlite:
+  \begin{itemize}
+  \item Heimatadresse: Favoritenstraße 9, 1040 Wien
+  \item Arbeitsadresse: Operngasse 21, 1040 Wien
+  \item Weltcafe-Standort: Schwarzspanierstraße 15, 1090 Wien
+  \item IoT-Gerätekonfigurationen für Lampen und Staubsaugerroboter
+  \end{itemize}
+
+  .sqlite Dateien wurden mit dem ''DB Browser for SQLite'' geöffnet und dort im ''Browse Data'' Tab ausgelesen.
+\item Cache-Daten in Library/Caches/[Bundle ID]/Cache.db:
+  \begin{itemize}
+  \item IP-Adresse: 84.115.235.203
+  \item Standortdaten: Wien
+  \item Gesundheits-API Calls
+  \end{itemize}
+
+  .db Dateien wurden ebenfalls mit dem ''DB Browser for SQLite'' geöffnet und dort im ''Browse Data'' Tab ausgelesen.
+
+\item Screenshot-Cache:
+  \begin{itemize}
+  \item Bankdaten in \lstinline{Application/0420C351-0FF4-47C9-82A6-46453BE6ABAA/Library/SplashBoard/Snapshots/sceneID_com.apple.mobilenotes-83EBA897-8A74-4960-B47A-784C165CA77C/082886CC-F8CE-4C60-B146-E42268573330@2x.ktx}
+    \begin{itemize}
+    \item IBAN: AT02 1200 0007 0344 7144
+    \item BIC: BKAUATWW
+    \item Kreditkarte: 2222 4000 7000 0005 (Ablauf: 03/30, CVC: 737)
+    \item Bank-PIN: 9RkX4a87mF
+    \end{itemize}
+  \item Versicherungsinformationen in \lstinline{Application/0A1A5639-A370-4CBC-8194-3BF58CBE5A8C/Library/SplashBoard/Snapshots/sceneID_at.privateversicherung.app-default/A672ACD7-891C-4C45-BDF2-B3FDF5B42381@2x.ktx}
+    \begin{itemize}
+    \item Versicherungsnummer: 500/1234567-8
+    \item Monatliche Prämie: €100,00
+    \item Startdatum: 01.01.2015
+    \end{itemize}
+  \end{itemize}
+\end{itemize}
+
+.ktx Dateien waren am einfachsten auszulesen, da auf MacOS diese mit dem Apple Previewer lesbar sind, so wurden aus diesen die Infromationen ausgelsen.
+
+Profil der Person:
+\begin{itemize}
+  \item Name: Manzana
+  \item Telefonnummer: 004367705619025
+  \item Geburtsdatum: 01.04.1990
+  \item Wohnadresse: Favoritenstraße 9, 1040 Wien
+  \item Arbeitsadresse: Operngasse 21, 1040 Wien
+  \item Häufiger Aufenthaltsort: Weltcafe, Schwarzspanierstraße 15, 1090 Wien
+  \item Versicherungsnummer: 500/1234567-8 (seit 01.01.2015, monatliche Prämie €100)
+  \item Bankverbindung:
+  \begin{itemize}
+  \item IBAN: AT02 1200 0007 0344 7144
+  \item BIC: BKAUATWW
+  \item Kreditkarte: 2222 4000 7000 0005 (gültig bis 03/30)
+  \end{itemize}
+  \item Smart Home Geräte:
+  \begin{itemize}
+  \item Diverse IoT-Lampen
+  \item Staubsaugroboter
+  \end{itemize}
+  \item Gesundheitsdaten:
+  \begin{itemize}
+  \item Verschiedene Symptome und Krankheitsbilder
+  \end{itemize}
+  \item Technische Daten:
+  \begin{itemize}
+  \item IP-Adresse: 84.115.235.203
+  \item Häufiger Aufenthaltsort laut Standortdaten: Wien
+  \end{itemize}
+  \end{itemize}
+
 
 \subsection{AND(roid)ERS}
 Nicht gelöst.
