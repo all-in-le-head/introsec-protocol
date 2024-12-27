@@ -5,3 +5,11 @@
 !buildfiles/*.pdf
 
 .DS_STORE
+protokoll.aux
+protokoll.fdb_latexmk
+protokoll.fls
+protokoll.log
+protokoll.out
+protokoll.synctex.gz
+protokoll.toc
+.vscode/settings.json

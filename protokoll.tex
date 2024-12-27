@@ -136,33 +136,37 @@
 	\subsection{MozART.}
 	Nicht gelöst.
 
+	\newpage
+
 	\section{Zertifiziertes Durcheinander}
 
 	\subsection{Zertifizieren ist schwer}
 	Um den Certificate Signing Request zu erstellen habe ich den folgenden Befehl
 	verwendet: \lstinline{openssl req -newkey rsa:4096 -sha512 -config openssl.cnf -out csr.csr -subj "/CN=12123657-Intermediate-CA-WS2024/OU=ESSE-Lab1-Exercise"}
-	\\ \lstinline{req} ist der Befehl um einen CSR zu erstellen; \\ \lstinline{-newkey rsa:4096}
-	spezifiziert, dass ein neuer Key (4096-Bit RSA) erstellt werden soll; \\ \lstinline{-sha512}
-	gibt an, dass sha512WithRSAEncription als Signaturalgorithmus verwendet werden
-	soll; \\ mit \lstinline{-config} wird angegeben, welches config file zu
-	verwenden ist; \\ \lstinline{-out} bestimmt das output-file und \\ \lstinline{-subj "/CN=12123657-Intermediate-CA-WS2024/OU=ESSE-Lab1-Exercise"}
-	definiert die gewünschten Namens-Parameter im CSR. \\ \\ Das config file dient
-	dazu, die nötigen X509v3 Parameter zu setzen und sieht aus wie folgt:
+	\begin{itemize}
+		\item \lstinline{req} ist der Befehl um einen CSR zu erstellen
+		\item \lstinline{-newkey rsa:4096} spezifiziert, dass ein neuer Key (4096-Bit RSA) erstellt werden soll
+		\item \lstinline{-sha512} gibt an, dass sha512WithRSAEncription als Signaturalgorithmus verwendet werden soll
+		\item mit \lstinline{-config} wird angegeben, welches config file zu verwenden ist
+		\item \lstinline{-out} bestimmt das output-file und
+		\item \lstinline{-subj "/CN=12123657-Intermediate-CA-WS2024/OU=ESSE-Lab1-Exercise"} definiert die gewünschten Namens-Parameter im CSR.
+	\end{itemize}
+	Das config file dient dazu, die nötigen X509v3 Parameter zu setzen und sieht aus wie folgt:
 	\begin{lstlisting}[caption=openssl.cnf,label=code:opensslConfig,style=simple]
-  [ req ]
-  default_bits           = 4096
-  default_md             = sha512
-  default_keyfile        = privkey.pem
-  distinguished_name     = req_distinguished_name
-  req_extensions          = v3_req
+		[ req ]
+		default_bits           = 4096
+		default_md             = sha512
+		default_keyfile        = privkey.pem
+		distinguished_name     = req_distinguished_name
+		req_extensions          = v3_req
 
-  [ req_distinguished_name ]
+		[ req_distinguished_name ]
 
-  [ v3_req ]
-  subjectKeyIdentifier = hash
-  basicConstraints = critical, CA:true, pathlen:0
-  keyUsage = critical, Certificate Sign, CRL Sign
-\end{lstlisting}
+		[ v3_req ]
+		subjectKeyIdentifier = hash
+		basicConstraints = critical, CA:true, pathlen:0
+		keyUsage = critical, Certificate Sign, CRL Sign
+	\end{lstlisting}
 	Nach Ausführung des oben genannten Befehls, wird der CSR in der Datei csr.csr gespeichert,
 	diese wurde im Abgabetool eingereicht.
 
@@ -183,10 +187,60 @@
 	\subsection{Sorcerer ... ?}
 	Nicht gelöst.
 
+	\newpage
+
 	\section{Seitlich fließend}
 
 	\subsection{Newton und Co KG.}
-	Nicht gelöst.
+	Bei dieser Aufgabe war es gefragt, sich über nc mit einem Server zu verbinden und eine Flag zu finden.
+	Anfangs bin ich wie folgt vorgegangen:
+	\begin{itemize}
+		\item Verbinden mit dem Server über tese: 
+		\begin{itemize}
+			\item \lstinline{ssh lab} (lab ist die gespeicherte ssh Konfiguration für tese)
+			\item \lstinline{nc 10.10.10.202 7044} (IP und Port laut Angabe)
+		\end{itemize}
+	\end{itemize}
+	Infolge dessen fragt der Server nach einem Passwort. Bei einer Eingabe, gibt der Server die zur Überprüfung des Passworts benötigte Zeit zurück. (siehe Abbildung~\ref*{fig:newton1})
+	Sofort ist mir die Möglichkeit eines Timing-Angriffes eingefallen. Also habe ich angefangen, Zeichen für Zeichen durchzuprobieren:
+	
+	\begin{figure}[h!]
+		\centering
+		\fbox{
+		\includegraphics[width=0.35\textwidth]{./imgs/newton_img/NewtonUndCoKG_0.png}
+		}
+		\caption{Antworten des Servers}
+		\label{fig:newton1}
+	\end{figure}
+
+	Dabei ist mir folgendes aufgefallen:
+	\begin{itemize}
+		\item Bei einem falschen Zeichen benötigt die Überprüfung ungefähr 0.1 Sekunden
+		\item Beim richtigen Zeichen dauert es ca. 0.05 Sekunden länger
+		\item Pro korrekter Stelle steigt die Zeit um etwa 0.1 Sekunden
+	\end{itemize}
+	Mit diesem gewonnenen Wissen, entschied ich mich dazu, ein Python-Skript zu schreiben:
+
+	\lstinputlisting[caption=TimingBruteforce.py,label=code:newton,style=simple]{TimingBruteforce.py}
+
+	Bevor ich dieses ausführen konnte, musste ich zuerst das Port-Forwarding einrichten: \\
+	\lstinline{ssh -L 9999:10.10.10.202:7044 lab} \\
+	Das Skript benutzt die \lstinline{socket} Bibliothek, um mit dem Server zu kommunizieren. Nach Start des Skripts, wird die Verbindung zum Server über den weitergeleiteten Port hergestellt.
+	Anschließend wird das Teampasswort an den Server geschickt. Daraufhin beginnt das Cracken des Passworts. Stelle für Stelle werden alle möglichen Zeichen durchprobiert, wobei die vom Server retournierte Zeit gespeichert wird.
+	Es wird das Zeichen gewählt, bei dem die Überprüfungsdauer am längsten ist.
+	Nach 20 Zeichen und etlicher Zeit war das Passwort gecrackt:
+
+	\begin{figure}[h!]
+		\centering
+		\fbox{
+		\includegraphics[width=0.9\textwidth]{./imgs/newton_img/NewtonUndCoKG.png}
+		}
+		\caption{Flag gefunden}
+		\label{fig:newton2}
+	\end{figure}
+
+	\newpage
+	
 
 	\section{Antike Mobile Security}
 
