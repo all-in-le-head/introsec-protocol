@@ -1,9 +1,6 @@
 # Ignore everything in the buildfiles directory
 /buildfiles/*
 
-# Allow .pdf files
-!buildfiles/*.pdf
-
 .DS_STORE
 protokoll.aux
 protokoll.fdb_latexmk
