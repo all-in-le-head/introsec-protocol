@@ -400,7 +400,41 @@
 	\end{itemize}
 
 	\subsection{AND(roid)ERS}
-	Nicht gelöst.
+	Die Aufgabe hat das Ziel eine Flag (Lösungsstring) von einer Android-App (APK) zu bekommen. Zu Beginn wird von TESE über SSH-Tunneling eine Verbindung aufgebaut, um die APK herunterzuladen. Dazu gibt man im Terminal folgenden Befehl ein: 
+    \begin{lstlisting} [numbers=none]
+    ssh -L 9000:10.10.10.201:80 eXXXXXXXX@tese.esse-teaching.at -p 12345
+        \end{lstlisting}
+    Dabei wird \textbf{xxxxxxxx} wird durch die eigenen Matrikelnummer ersetzt. Nachdem der Befehl ausgeführt wurde, öffnet man einen Webbrowser und gibt in die Addressleiste folgende URL ein: 
+    \begin{lstlisting} [numbers=none]
+    localhost:9000/team44/app.apk
+    \end{lstlisting}
+    Es erscheint ein Fenster, wo man den eigenen Teamnamen und das Passwort eingibt, um den Download zu starten. \newline
+    
+    \noindent Als nächstes wird die APK mit einem Emulator (z.B. Bluestacks) geöffnet, um zu sehen, was konkret verlangt wird. Es wird nach einem Passwort gefragt, der benötigt wird, um den Lösungsstring zur Abgabe freizuschalten. \newline
+    
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.25\linewidth]{imgs//AND(roid)ERS/Screenshot from 2025-01-12 12-19-30.png}
+        \caption{Interface von APK}
+        \label{fig:enter-label}
+    \end{figure}
+    
+    \noindent Um zu sehen, wie das Passwort generiert wird, öffnet man die APK mit einem Dekompiler (z.B. JADX) und sieht den Java-Code. Sucht man mit dem Stichwort \textbf{password}, dann findet man folgenden Code:
+    \begin{lstlisting}[language=java]
+    private final String getRandomPassword() {
+    InputStream resourceAsStream;
+    long currentTimeMillis = System.currentTimeMillis();
+    Random Random = RandomKt.Random(currentTimeMillis);
+    Log.i("UnlockFragment", "The current time is '" + currentTimeMillis + "'");
+    int nextInt = Random.nextInt(2291);
+    ClassLoader classLoader = getClass().getClassLoader();
+    String str = null;
+    if (classLoader != null && (resourceAsStream = classLoader.getResourceAsStream("passwords.txt")) != null)
+    .
+    .
+    .
+    \end{lstlisting}
+    Man kann imCode lesen, dass das ein zufälliges Passwort aus dem File \textbf{passwords.txt} durch Berechnungen geholt wird. So habe ich in diesem Fall ein Python-Script geschrieben, welches alle Passwörter durchprobiert (AND(roid)ERSBruteforce.py siehe Anhang).
 
 	\section{Babycam Espionage}
 
@@ -1153,6 +1187,9 @@
 
 	\subsection{TimingBruteforce.py (Newton und Co KG)}
 	\lstinputlisting[caption=TimingBruteforce.py,label=code:newton,style=simple]{files/TimingBruteforce.py}
+
+    \subsection{AND(roid)ERSBruteforce.py (AND(roid)ERS)}
+    \lstinputlisting[caption=AND(roid)ERSBruteforce.py,label=code:android,style=simple]{files/AND(roid)ERSBruteforce.py}
 
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%
