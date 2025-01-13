@@ -101,8 +101,68 @@
 	\section{Wireless Time Travel}
 
 	\subsection{Vier zukunftssichere Handschl\"age}
-	Nicht gelöst.
+	In der Aufgabe geht es darum einen WLAN-Dump zu erstellen und den Schlüssel zu finden der diesen entschlüsselt.
+	Um den WLAN-Dump zu erstellen mussen wir uns zuerst mit einem Scan-Host verbinden der über die tese (als Jump-Host) erreichbar ist. Um die Verbindung her zu stellen, haben wir folgende Befehle genutzt:
 
+	\begin{lstlisting}
+		ssh -p 12345 eXXXXXXXX@tese.esse-teaching.at
+		ssh -p 2222 eisec_team44@10.10.10.144
+	\end{lstlisting}
+
+	Der Zweite dieser Befehle hat folgende Funktion:
+	Er stellt eine sichere, verschlüsselte Verbindung über Port 2222 zum Host 10.10.10.144 her und meldet sich dort unter dem Benutzernamen eisec-team44 an. Dies ist notwendig, um auf dem Scan-Host die WLAN-Dumps zu erstellen und andschießend wieder in unsere lokale Umgebung zu übertragen.
+
+
+	Nun wo die Verbindung zum Scan-Host hergestellt worden ist, haben wir den IP Link geprüft um die derzeit verbundenen Netzwerk Schnittstellen und deren Namen zu erkennen. Dadurch konnten wir herausfinden, dass der Name des WLAN Interfaces scanhost-wlan0 ist, und wir auf ihm den Dump ausführen müssen. Mit dem Befehl:
+	
+	\begin{lstlisting}
+	sudo airodump-ng scanhost-wlan0 
+	\end{lstlisting}
+
+	konnten wir einen passiven Scan des WLANs durchführen. In Abbildung \ref{fig:scanhost-wlan0} können wir alle verbundenen Netzwerke sehen. Von den uns angezeigten Informationen sind für uns vor allem die BSSID (MAC Adresse) und STATION (Adresse der verbundenen Geräte) wichtig, da wir mit ihnen einen Deauthentication Angriff starten können.
+
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.75\textwidth]{imgs/Wireless Time Travel/scanhost-wlan0.png}
+		\caption{scanhost-wlan0}
+		\label{fig:scanhost-wlan0}
+	\end{figure}
+
+	Als nächstes ging es darum einen Handshack zu erfassen wofür wir als erstes die Packete jedes seperaten Channel abfangen mussten. Dies konnten wir mit folgendem Befehl erreichen:
+
+	\begin{lstlisting}
+		sudo airodump-ng --output-format pcap scanhost-wlan0 -c Channel
+	\end{lstlisting}
+
+	Anschließend wurde folgender Befehl ausgeführt, um einen Client vom Access Point zu trennen, und die im Dump enthaltenen EAPOL-Packete zu erhalten.
+
+	\begin{lstlisting}
+		sudo aireplay-ng -0 2 -a BSSID -c STATION scanhost-wlan0
+	\end{lstlisting}
+
+	Im nächsten Schritt müssen wir zum Scan-Host Tunneln um die zuvor erstellte .cap Datei zu erhalten und anschließend auf unser lokales Gerät zu kopieren. Dies konnten wir mit den folgenden Befehlen erreichen:
+
+	\begin{lstlisting}
+		ssh -L 2222:10.10.10.144:2222 eXXXXXXXX@tese.esse-teaching.at -p 12345
+		scp -P 2222 eisec_team44@localhost:/home/eisec_team44/dumpfile_ ~/Documents
+	\end{lstlisting}
+
+	Nun wo sich der WLAN-Dump auf dem lokalen Gerät befindet, können wir einen Brute Force Angriff auf das File ausführen womit wir versuchen die Verschlüsslung des Netzwerks zu knacken. Dazu haben wir eine Liste an bekannten Passwörtern verwendet und folgenden Befehl ausgefüht:
+
+	\begin{lstlisting}
+		aircrack-ng -w /path/to/rockyou.txt dumpfile.cap
+	\end{lstlisting}
+
+	Nach der Ausführung des Angriffs haben wir den korrekten Schlüssel erhalten. Dies ist in Abbildung \ref{fig:schluesselGefunden} zu sehen.
+
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.75\textwidth]{imgs/Wireless Time Travel/schluesselGefunden.png}
+		\caption{Gefundener Schlüssel}
+		\label{fig:schluesselGefunden}
+	\end{figure}
+
+ 
 	\subsection{Code der Zukunft}
 	Nicht gelöst.
 
