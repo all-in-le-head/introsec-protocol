@@ -181,7 +181,7 @@
 	
 	Ähnlich wie bei Aufgabe Code der Zukunft, geht es in Ungewöhnlich verschlüsselte Botschaft darum den erstellten WLAN-Dump zu analysieren. Dieses mal suchen wir allerdings nach einer Email die einen Gegenstand erwähnt. 
 
-	Dafür öffnen wir wie zuvor auch den Dump in Wireshark und verwenden den Anzeigefilter um nach smtp zu filtern. Wir können nun mehrere sich wiederholende Packete sehen, wovon zwei mit MAIL FROM und RCPT TO gekennzeichnet sind. Wählen wir nun die RCPT TO Mail aus und verwenden die TCP Folgen Funktion, können wir den Inhalt der Mail sehen. Der darin enthaltene Text wurde mit einem base24 decoder dekodiert und ergibt folgende Nachricht, in der sich der gesuchte gegenstand versteckt.
+	Dafür öffnen wir wie zuvor auch den Dump in Wireshark und verwenden den Anzeigefilter um nach smtp zu filtern. Wir können nun mehrere sich wiederholende Packete sehen, wovon zwei mit MAIL FROM und RCPT TO gekennzeichnet sind. Wählen wir nun die RCPT TO Mail aus und verwenden die TCP Folgen Funktion, können wir den Inhalt der Mail sehen. Der darin enthaltene Text wurde mit einem base24 decoder dekodiert und ergibt folgende Nachricht, in der sich der gesuchte gegenstand versteckt.   
 
 	\fbox{\parbox{\textwidth}{
 		Siu dich Arnold,
