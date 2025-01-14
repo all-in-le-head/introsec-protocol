@@ -164,10 +164,42 @@
 
  
 	\subsection{Code der Zukunft}
-	Nicht gelöst.
+	In dieser Aufgabe geht es darum den WLAN-Dump, der bereits in Aufgabe Vier zukunftssichere Handschläge erstellt wurde, zu untersuchen und einen Code zu finden. Dafür öffneten wir zuerst die .cap Datei in Wireshark, um sie analysieren zu können. Da wir aus der Angabe schließen können, dass es sich um ein Gespräch handelt, in dem der Code erwähnt wird, verwendeten wir Wiresharks Telephonie Funktion.
+
+	Die Telephonie Funktion dient dazu Sprach- und Videoverbindungen (VoIP) sowie klassische Telefonie-Protokolle zu analysieren. In unserem Fall untersuchten wir den RTP Stream, wo wir 4 Packete gefunden haben. Nach dem Abspielen der Nachrichten hatten wir den Code.
+
+	\begin{figure}
+		\centering
+		\includegraphics[width=1\textwidth]{imgs/Wireless Time Travel/Telephonie.png}
+		\caption{Telephonie Nachrichten}
+		\label{Telephonie}
+	\end{figure}
+
+
 
 	\subsection{Ungew\"ohnlich verschl\"usselte Botschaft}
-	Nicht gelöst.
+	
+	Ähnlich wie bei Aufgabe Code der Zukunft, geht es in Ungewöhnlich verschlüsselte Botschaft darum den erstellten WLAN-Dump zu analysieren. Dieses mal suchen wir allerdings nach einer Email die einen Gegenstand erwähnt. 
+
+	Dafür öffnen wir wie zuvor auch den Dump in Wireshark und verwenden den Anzeigefilter um nach smtp zu filtern. Wir können nun mehrere sich wiederholende Packete sehen, wovon zwei mit MAIL FROM und RCPT TO gekennzeichnet sind. Wählen wir nun die RCPT TO Mail aus und verwenden die TCP Folgen Funktion, können wir den Inhalt der Mail sehen. Der darin enthaltene Text wurde mit einem base24 decoder dekodiert und ergibt folgende Nachricht, in der sich der gesuchte gegenstand versteckt.
+
+	\fbox{\parbox{\textwidth}{
+		Siu dich Arnold,
+
+		ich hab was Seltsames gefunden - einen alten Gegenstand, der auf den ersten Blick unscheinbar wirkt, aber irgendwas ist daran anders. Als ich ihn genauer untersucht habe, hatte ich plötzlich das Gefühl, dass die Zeit stehen geblieben ist. Kein Witz, es war, als ob alles um mich herum für einen Moment eingefroren wäre. Ich hab noch nicht herausgefunden, wie oder warum, aber ich glaube, dieses Ding kann mehr, als man denkt. Wenn ich raten müsste, dann schaut es aus wie ein WQUU1-Zeitreisekapselmodul. Vielleicht hat es was mit Energie, Frequenzen oder irgendwas, das wir noch nicht verstehen, zu tun.
+		
+		Ich bringe es dir morgen vorbei. Du musst das selbst sehen, um es zu glauben.
+		
+		T- Astralische Schwingungen,
+		Donald
+		}
+	}
+	
+	
+
+
+
+
 
 	\subsection{Geheimnisvoller Zugang: superboss}
 	Nicht gelöst.
